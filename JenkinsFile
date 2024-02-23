@@ -29,7 +29,7 @@ steps{
 stage("Sonar Scan"){
 	steps{
 		withSonarQubeEnv(credentialsId: 'Sonar-jenkins-token') {
-			bat '''
+			bat """
 sonar.projectKey=maven-project-jenkins-lab
 sonar.projectName=maven-project-jenkins-lab
 sonar.sources=src/main
@@ -41,7 +41,7 @@ sonar.surefire.reportsPath=target/surefire-reports
 sonar.jacoco.reportPath=target/jacoco.exec
 sonar.java.binaries=target/classes
 sonar.java.coveragePlugin=jacoco
-'''
+"""
 		}
 	}
 }
