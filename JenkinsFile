@@ -28,7 +28,6 @@ steps{
   bat "mvn install -DskipTests"
 }
 }
-
 stage("Sonar Scan"){
 	steps{
 		withSonarQubeEnv(credentialsId: 'Sonar-jenkins-token', installationName: 'Sonarqube') {
