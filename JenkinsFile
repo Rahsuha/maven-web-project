@@ -6,6 +6,9 @@ maven 'maven-3.8.4'
 jdk 'jdk-11'
 }
 
+environment{
+	SONAR_RUNNER_HOME = 
+}
 stages{
 stage("Clean") {
   steps{
@@ -28,8 +31,20 @@ steps{
 
 stage("Sonar Scan"){
 	steps{
-		withSonarQubeEnv(installationName: 'Sonarqube',credentialsId: 'Sonar-jenkins-token') {
-			bat "mvn clean package sonar:sonar"
+		withSonarQubeEnv(credentialsId: 'Sonar-jenkins-token', installationName: 'Sonarqube') {
+			bat "sonar-scanner
+-Dsonar.projectKey=maven-project-jenkins-lab
+-Dsonar.projectName=maven-project-jenkins-lab
+-Dsonar.sources=src/main
+-Dsonar.sourceEncoding=UTF-8
+-Dsonar.language=jav
+-Dsonar.test=src/test
+-Dsonar.junit.reportsPath=target/surefire-reports
+-Dsonar.surefire.reportsPath=target/surefire-reports
+-Dsonar.jacoco.reportPath=target/jacoco.exec
+-Dsonar.java.binaries=target/classes
+-Dsonar.java.coveragePlugin=jacoco
+"
 		}
 	}
 }
