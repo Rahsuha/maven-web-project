@@ -25,5 +25,23 @@ steps{
   bat "mvn install -DskipTests"
 }
 }
+
+stage("Sonar Scan"){
+	steps{
+		withSonarQubeEnv(credentialsId: 'Sonar-jenkins-token') {
+sonar.projectKey=maven-project-jenkins-lab
+sonar.projectName=maven-project-jenkins-lab
+sonar.sources=src/main
+sonar.sourceEncoding=UTF-8
+sonar.language=jav
+sonar.test=src/test
+sonar.junit.reportsPath=target/surefire-reports
+sonar.surefire.reportsPath=target/surefire-reports
+sonar.jacoco.reportPath=target/jacoco.exec
+sonar.java.binaries=target/classes
+sonar.java.coveragePlugin=jacoco
+		}
+	}
+}
 }
 }
