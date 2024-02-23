@@ -28,7 +28,7 @@ steps{
 
 stage("Sonar Scan"){
 	steps{
-		withSonarQubeEnv(credentialsId: 'Sonar-jenkins-token', installationName: 'Sonarqube') {
+		withSonarQubeEnv(installationName: 'Sonarqube',credentialsId: 'Sonar-jenkins-token') {
 			bat """
 sonar.projectKey=maven-project-jenkins-lab
 sonar.projectName=maven-project-jenkins-lab
