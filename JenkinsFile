@@ -30,8 +30,8 @@ stage("Sonar Scan"){
 	steps{
 		withSonarQubeEnv(installationName: 'Sonarqube',credentialsId: 'Sonar-jenkins-token') {
 			bat """
-sonar.projectKey=maven-project-jenkins-lab
-sonar.projectName=maven-project-jenkins-lab
+sonar.projectKey=jenkins_maven.eclipse
+sonar.projectName=jenkins_maven.eclipse
 sonar.sources=src/main
 sonar.sourceEncoding=UTF-8
 sonar.language=jav
